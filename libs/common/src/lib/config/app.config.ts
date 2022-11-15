@@ -13,7 +13,7 @@ export class AppConfig implements IAppConfig {
 export const APP_CONFIG_INJECTION_TOKEN = new InjectionToken<IAppConfig>(
   'AppConfigInjectionToken',
   {
-    providedIn: 'any',
+    providedIn: 'root',
     factory: () => {
       throw new Error('Token not defined');
     },
