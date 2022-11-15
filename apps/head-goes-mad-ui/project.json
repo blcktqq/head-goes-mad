@@ -1,0 +1,95 @@
+{
+  "name": "head-goes-mad-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/head-goes-mad-ui/src",
+  "prefix": "head-goes-mad",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/head-goes-mad-ui",
+        "index": "apps/head-goes-mad-ui/src/index.html",
+        "main": "apps/head-goes-mad-ui/src/main.ts",
+        "polyfills": "apps/head-goes-mad-ui/src/polyfills.ts",
+        "tsConfig": "apps/head-goes-mad-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/head-goes-mad-ui/src/favicon.ico",
+          "apps/head-goes-mad-ui/src/assets"
+        ],
+        "styles": ["apps/head-goes-mad-ui/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/head-goes-mad-ui/src/environments/environment.ts",
+              "with": "apps/head-goes-mad-ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "head-goes-mad-ui:build:production"
+        },
+        "development": {
+          "browserTarget": "head-goes-mad-ui:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "head-goes-mad-ui:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/head-goes-mad-ui/**/*.ts",
+          "apps/head-goes-mad-ui/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/head-goes-mad-ui/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
