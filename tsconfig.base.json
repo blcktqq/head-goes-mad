@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@head-goes-mad/common": ["libs/common/src/index.ts"]
+      "@head-goes-mad/common": ["libs/common/src/index.ts"],
+      "@head-goes-mad/firebase-providers": [
+        "libs/firebase-providers/src/index.ts"
+      ],
+      "@head-goes-mad/user": ["libs/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
