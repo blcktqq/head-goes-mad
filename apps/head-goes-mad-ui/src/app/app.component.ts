@@ -11,6 +11,6 @@ export class AppComponent implements OnInit {
   constructor(public userFacade: UserFacade) {}
 
   ngOnInit(): void {
-    // this.authProvider.login();
+    console.log('Hello world');
   }
 }

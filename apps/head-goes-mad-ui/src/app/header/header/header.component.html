@@ -1,0 +1,33 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>HGM</span>
+    <div *ngIf="(isExtraSmall | async) === false" class="ml-1">
+      <ng-continaer [ngTemplateOutlet]="navigationLinks"> </ng-continaer>
+    </div>
+    <span class="spacer"></span>
+    <ng-container *ngIf="userFacade.selectedUser$ | async">
+      <img
+        class="object-cover inline-block h-12 w-12 rounded-full ring-2 ring-white"
+        [src]="(userFacade.selectedUser$ | async)?.photoUrl"
+        alt="User's picture"
+      />
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon button with a vertical three dot icon"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="signout()" mat-menu-item>Sign out</button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="isExtraSmall | async" class="hidden">
+    <ng-continaer [ngTemplateOutlet]="navigationLinks"> </ng-continaer>
+  </mat-toolbar-row>
+</mat-toolbar>
+<ng-template #navigationLinks>
+  <a mat-button routerLink="chain">Chain</a>
+  <a mat-button routerLink="today">Today</a>
+</ng-template>
