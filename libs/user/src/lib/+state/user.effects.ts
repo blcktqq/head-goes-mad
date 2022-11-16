@@ -18,11 +18,6 @@ export class UserEffects implements OnInitEffects {
         run: (action) => {
           // Your custom service 'load' logic goes here. For now just return a success action...
           return from(this.authProvider.getUser()).pipe(
-            tap((user) => {
-              if (!user) {
-                this.authProvider.login();
-              }
-            }),
             filter((user): user is ISignedInUser => !!user),
             map((user) =>
               UserActions.loadUserSuccess({
