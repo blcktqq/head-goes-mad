@@ -3,6 +3,7 @@
   "chain": "Chain",
   "today": "Today",
   "auth": {
-    "sign_in_with_google": "Sign in with google"
+    "sign_in_with_google": "Sign in with google",
+    "sign_out": "Sign out"
   }
 }

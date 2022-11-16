@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DaysFacade } from '@head-goes-mad/days-management';
 
 @Component({
   selector: 'head-goes-mad-chain-view',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chain-view.component.scss'],
 })
 export class ChainViewComponent implements OnInit {
-  constructor() {}
+  constructor(private daysFacade: DaysFacade) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.daysFacade.init()
+  }
 }

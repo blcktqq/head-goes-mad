@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './header/header.module';
 import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './app.router-module';
+import { DaysManagementModule } from 'libs/days-management/src';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,6 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     UserModule,
+    DaysManagementModule,
     BrowserAnimationsModule,
     HeaderModule,
     RouterModule,
