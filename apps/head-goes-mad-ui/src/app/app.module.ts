@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { APP_CONFIG_INJECTION_TOKEN } from '@head-goes-mad/common';
 import { UserModule } from '@head-goes-mad/user';
 import { EffectsModule } from '@ngrx/effects';
@@ -23,7 +23,9 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     TranslateModule.forRoot({
+      defaultLanguage: 'en-US',
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
