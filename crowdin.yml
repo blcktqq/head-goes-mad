@@ -1,0 +1,3 @@
+files:
+  - source: apps/head-goes-mad-ui/src/assets/i18n/en.json
+    translation: apps/head-goes-mad-ui/src/assets/%locale%.json
