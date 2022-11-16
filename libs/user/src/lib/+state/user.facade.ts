@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FirebaseAuthProvider } from '@head-goes-mad/firebase-providers';
 import { select, Store, Action } from '@ngrx/store';
 
 import * as UserActions from './user.actions';
@@ -17,7 +18,10 @@ export class UserFacade {
   allUser$ = this.store.pipe(select(UserSelectors.getAllUser));
   selectedUser$ = this.store.pipe(select(UserSelectors.getSelected));
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private authProvider: FirebaseAuthProvider
+  ) {}
 
   /**
    * Use the initialization action to perform one
@@ -25,5 +29,9 @@ export class UserFacade {
    */
   init() {
     this.store.dispatch(UserActions.initUser());
+  }
+
+  signOut() {
+    this.authProvider.logout();
   }
 }

@@ -1,1 +1,2 @@
 <span> Hello, {{ (userFacade.selectedUser$ | async)?.name }}</span>
+<img [src]="(userFacade.selectedUser$ | async)?.photoUrl" />
