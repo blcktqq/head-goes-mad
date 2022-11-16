@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [HeaderComponent],
   exports: [HeaderComponent],
@@ -18,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
     LayoutModule,
     RouterModule,
     MatMenuModule,
+    TranslateModule,
   ],
 })
 export class HeaderModule {}
