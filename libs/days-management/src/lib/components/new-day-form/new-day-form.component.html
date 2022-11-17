@@ -1,0 +1,43 @@
+<h2>{{ 'add_new_day.title' | translate }}</h2>
+<mat-dialog-content>
+  <ng-container [formGroup]="fg">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'choose_a_date' | translate }}</mat-label>
+      <input
+        [matDatepickerFilter]="dateFilterFn"
+        formControlName="date"
+        matInput
+        [matDatepicker]="datepicker"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>
+            {{ 'cancel' | translate }}
+          </button>
+          <button mat-raised-button color="primary" matDatepickerApply>
+            {{ 'apply' | translate }}
+          </button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'description' | translate }}</mat-label>
+      <input matInput formControlName="description" />
+    </mat-form-field>
+  </ng-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+  <button
+    [disabled]="fg.invalid"
+    mat-button
+    [mat-dialog-close]="fg.getRawValue()"
+    cdkFocusInitial
+  >
+    {{ 'Ok' | translate }}
+  </button>
+</mat-dialog-actions>

@@ -2,8 +2,15 @@
   "hello": "world",
   "chain": "Chain",
   "today": "Today",
+  "choose_a_date": "Choose a date",
+  "apply": "Apply",
+  "cancel": "Cancel",
+  "description": "Description",
   "auth": {
     "sign_in_with_google": "Sign in with google",
     "sign_out": "Sign out"
+  },
+  "add_new_day": {
+    "title": "Start a new working day"
   }
 }
