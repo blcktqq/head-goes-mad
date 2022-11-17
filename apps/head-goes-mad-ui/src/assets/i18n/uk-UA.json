@@ -1,6 +1,16 @@
 {
     "hello": "світ",
     "auth": {
-        "sign_in_with_google": "Увійти за допомогою Google"
-    }
+        "sign_in_with_google": "Увійти за допомогою Google",
+        "sign_out": "Вийти"
+    },
+    "today": "Сьогодні",
+    "choose_a_date": "Вибиріть дату",
+    "apply": "Применити",
+    "cancel": "Відмінити",
+    "description": "Опис",
+    "add_new_day": {
+        "title": "Додай новий день"
+    },
+    "chain": "Ланцюг"
 }
