@@ -17,9 +17,7 @@
     "paths": {
       "@hgm/common": ["libs/common/src/index.ts"],
       "@hgm/days-management": ["libs/days-management/src/index.ts"],
-      "@hgm/firebase-providers": [
-        "libs/firebase-providers/src/index.ts"
-      ],
+      "@hgm/firebase-providers": ["libs/firebase-providers/src/index.ts"],
       "@hgm/user": ["libs/user/src/index.ts"]
     }
   },

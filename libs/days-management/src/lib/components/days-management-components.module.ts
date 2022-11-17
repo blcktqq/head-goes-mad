@@ -11,8 +11,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
+import { DayContainerComponent } from './day-container/day-container.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
-  declarations: [AddNewButtonComponent, NewDayFormComponent],
+  declarations: [
+    AddNewButtonComponent,
+    NewDayFormComponent,
+    DayContainerComponent,
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -23,8 +29,9 @@ import { TranslateModule } from '@ngx-translate/core';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    TranslateModule
+    TranslateModule,
+    MatExpansionModule,
   ],
-  exports: [AddNewButtonComponent],
+  exports: [AddNewButtonComponent, DayContainerComponent],
 })
 export class DaysManagementComponentsModule {}

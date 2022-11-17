@@ -1,5 +1,6 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on, Action } from '@ngrx/store';
+import { isToday } from 'date-fns';
 
 import * as DaysActions from './days.actions';
 import { DaysEntity } from './days.models';
@@ -31,9 +32,24 @@ const reducer = createReducer(
     loaded: false,
     error: null,
   })),
-  on(DaysActions.loadDaysSuccess, (state, { days }) =>
-    daysAdapter.setAll(days, { ...state, loaded: true })
-  ),
+  on(DaysActions.loadDaysSuccess, (state, { days }) => {
+    state = daysAdapter.setAll(days, { ...state, loaded: true });
+    state = daysAdapter.setOne(
+      {
+        date: new Date(null as unknown as Date),
+        id: null,
+        description: '',
+        isHeap: true,
+      },
+      { ...state }
+    );
+    const today = days.find((d) => !d.isHeap && isToday(d.date));
+    if (today) {
+      const id = daysAdapter.selectId(today);
+      state = { ...state, selectedId: id };
+    }
+    return state;
+  }),
   on(DaysActions.loadDaysFailure, (state, { error }) => ({ ...state, error }))
 );
 

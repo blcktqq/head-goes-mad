@@ -1,0 +1,19 @@
+<mat-accordion *ngIf="day">
+  <mat-expansion-panel
+    (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ day.isHeap ? ('chain' | translate) : (day.date | date) }}
+      </mat-panel-title>
+      <mat-panel-description *ngIf="day.description">
+        {{ day.description }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+    <mat-action-row>
+      <button mat-button color="primary">Add</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>

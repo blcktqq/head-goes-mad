@@ -7,7 +7,7 @@
     <span class="spacer"></span>
     <ng-container *ngIf="userFacade.selectedUser$ | async">
       <img
-        class="object-cover inline-block h-12 w-12 rounded-full ring-2 ring-white"
+        class="object-cover inline-block h-8 w-8 rounded-full ring-2 ring-white"
         [src]="(userFacade.selectedUser$ | async)?.photoUrl"
         alt="User's picture"
       />
