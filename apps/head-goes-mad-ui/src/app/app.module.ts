@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { environment } from '../environments/environment';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_CONFIG_INJECTION_TOKEN } from '@head-goes-mad/common';
-import { UserModule } from '@head-goes-mad/user';
+import { APP_CONFIG_INJECTION_TOKEN } from '@hgm/common';
+import { UserModule } from '@hgm/user';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';

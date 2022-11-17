@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseAuthProvider } from '@head-goes-mad/firebase-providers';
+import { FirebaseAuthProvider } from '@hgm/firebase-providers';
 import { filter, take } from 'rxjs';
 
 @Component({
-  selector: 'head-goes-mad-authentication',
+  selector: 'hgm-authentication',
   templateUrl: './authentication.component.html',
   styleUrls: ['./authentication.component.scss'],
 })

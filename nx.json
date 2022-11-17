@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "npmScope": "head-goes-mad",
+  "npmScope": "hgm",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",

@@ -10,7 +10,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { firstValueFrom, ReplaySubject, take } from 'rxjs';
-import { ISignedInUser } from '@head-goes-mad/common';
+import { ISignedInUser } from '@hgm/common';
 
 @Injectable({
   providedIn: 'root',

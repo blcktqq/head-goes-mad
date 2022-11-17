@@ -5,7 +5,7 @@ import { DaysFacade } from '../../+state/days.facade';
 import { NewDayFormComponent } from '../new-day-form/new-day-form.component';
 
 @Component({
-  selector: 'head-goes-mad-add-new-button',
+  selector: 'hgm-add-new-button',
   templateUrl: './add-new-button.component.html',
   styleUrls: ['./add-new-button.component.scss'],
 })

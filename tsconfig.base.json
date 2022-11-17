@@ -15,12 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@head-goes-mad/common": ["libs/common/src/index.ts"],
-      "@head-goes-mad/days-management": ["libs/days-management/src/index.ts"],
-      "@head-goes-mad/firebase-providers": [
+      "@hgm/common": ["libs/common/src/index.ts"],
+      "@hgm/days-management": ["libs/days-management/src/index.ts"],
+      "@hgm/firebase-providers": [
         "libs/firebase-providers/src/index.ts"
       ],
-      "@head-goes-mad/user": ["libs/user/src/index.ts"]
+      "@hgm/user": ["libs/user/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

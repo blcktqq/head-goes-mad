@@ -2,7 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { IAppConfig, IFirebaseConfig } from '@head-goes-mad/common';
+import { IAppConfig, IFirebaseConfig } from '@hgm/common';
 
 export const environment: IAppConfig = {
   production: false,

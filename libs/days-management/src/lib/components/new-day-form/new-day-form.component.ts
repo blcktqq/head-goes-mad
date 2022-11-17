@@ -9,7 +9,7 @@ import { DaysFacade } from '../../+state/days.facade';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
-  selector: 'head-goes-mad-new-day-form',
+  selector: 'hgm-new-day-form',
   templateUrl: './new-day-form.component.html',
   styleUrls: ['./new-day-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

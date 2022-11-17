@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserFacade } from '@head-goes-mad/user';
+import { UserFacade } from '@hgm/user';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'head-goes-mad-header',
+  selector: 'hgm-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })

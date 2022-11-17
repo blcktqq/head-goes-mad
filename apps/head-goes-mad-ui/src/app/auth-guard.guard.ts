@@ -7,7 +7,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { UserFacade } from '@head-goes-mad/user';
+import { UserFacade } from '@hgm/user';
 import { Observable, take, tap } from 'rxjs';
 
 @Injectable({

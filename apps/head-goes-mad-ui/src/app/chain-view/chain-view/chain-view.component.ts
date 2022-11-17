@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DaysFacade } from '@head-goes-mad/days-management';
+import { DaysFacade } from '@hgm/days-management';
 
 @Component({
-  selector: 'head-goes-mad-chain-view',
+  selector: 'hgm-chain-view',
   templateUrl: './chain-view.component.html',
   styleUrls: ['./chain-view.component.scss'],
 })

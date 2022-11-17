@@ -1,4 +1,4 @@
-import { IAppConfig } from '@head-goes-mad/common';
+import { IAppConfig } from '@hgm/common';
 
 export const environment: IAppConfig = {
   production: true,

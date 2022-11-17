@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseStoreProvider } from '@head-goes-mad/firebase-providers';
+import { FirebaseStoreProvider } from '@hgm/firebase-providers';
 import { get, push, ref } from 'firebase/database';
 import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'head-goes-mad-today-view',
+  selector: 'hgm-today-view',
   templateUrl: './today-view.component.html',
   styleUrls: ['./today-view.component.scss'],
 })

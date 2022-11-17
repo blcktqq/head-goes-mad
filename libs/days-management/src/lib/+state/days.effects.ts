@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ISignedInUser } from '@head-goes-mad/common';
-import { UserEntity, UserFacade } from '@head-goes-mad/user';
+import { ISignedInUser } from '@hgm/common';
+import { UserEntity, UserFacade } from '@hgm/user';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
 import { filter, map, switchMap } from 'rxjs';

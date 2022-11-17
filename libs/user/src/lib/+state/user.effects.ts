@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ISignedInUser } from '@head-goes-mad/common';
-import { FirebaseAuthProvider } from '@head-goes-mad/firebase-providers';
+import { ISignedInUser } from '@hgm/common';
+import { FirebaseAuthProvider } from '@hgm/firebase-providers';
 import { createEffect, Actions, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { fetch } from '@nrwl/angular';

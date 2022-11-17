@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FirebaseAuthProvider } from '@head-goes-mad/firebase-providers';
+import { FirebaseAuthProvider } from '@hgm/firebase-providers';
 import { select, Store, Action } from '@ngrx/store';
 import { map } from 'rxjs';
 
