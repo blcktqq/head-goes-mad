@@ -13,11 +13,13 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { DayContainerComponent } from './day-container/day-container.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DayContainerItemDirective } from './day-container/day-container-item.directive';
 @NgModule({
   declarations: [
     AddNewButtonComponent,
     NewDayFormComponent,
     DayContainerComponent,
+    DayContainerItemDirective,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
     TranslateModule,
     MatExpansionModule,
   ],
-  exports: [AddNewButtonComponent, DayContainerComponent],
+  exports: [AddNewButtonComponent, DayContainerComponent, DayContainerItemDirective],
 })
 export class DaysManagementComponentsModule {}

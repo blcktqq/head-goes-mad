@@ -6,6 +6,8 @@
   "apply": "Apply",
   "cancel": "Cancel",
   "description": "Description",
+  "heap": "Heap",
+  "add_task": "Add task",
   "auth": {
     "sign_in_with_google": "Sign in with google",
     "sign_out": "Sign out"

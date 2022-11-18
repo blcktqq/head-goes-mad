@@ -5,8 +5,11 @@
 <div class="flex flex-col">
   <hgm-day-container
     [day]="day"
+    (createTask)="createTask($event)"
     *ngFor="let day of days$ | async"
   ></hgm-day-container>
   <div class="spacer"></div>
-  <hgm-day-container [day]="heap$ | async"></hgm-day-container>
+  <hgm-day-container (createTask)="createTask($event)" [day]="heap$ | async">
+    <div hgmDayContainerItem>wow!</div>
+  </hgm-day-container>
 </div>

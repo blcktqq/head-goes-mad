@@ -20,4 +20,7 @@ export class ChainViewComponent implements OnInit {
   ngOnInit(): void {
     this.daysFacade.init();
   }
+  createTask(day: DaysEntity) {
+    console.log(day);
+  }
 }
