@@ -1,9 +1,9 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[hgmDayContainerItem]',
   exportAs: 'htmDayContainerItem',
 })
 export class DayContainerItemDirective {
-  constructor(public elementRef: ElementRef) {}
+  constructor(public viewRef: ViewContainerRef) {}
 }

@@ -12,3 +12,15 @@ export const loadTasksFailure = createAction(
   '[Tasks/API] Load Tasks Failure',
   props<{ error: any }>()
 );
+export const createTask = createAction(
+  '[Tasks Page] Create Task',
+  props<{ payload: TasksEntity }>()
+);
+
+export const createTaskSuccess = createAction(
+  '[Tasks Page] Create Task Success'
+);
+
+export const createTaskFailurt = createAction(
+  '[Tasks Page] Create Task Failure'
+);

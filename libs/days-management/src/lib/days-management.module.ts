@@ -9,6 +9,7 @@ import * as fromTasks from './+tasks/tasks.reducer';
 import { TasksEffects } from './+tasks/tasks.effects';
 import { TasksFacade } from './+tasks/tasks.facade';
 import { DaysmanagementService } from './+state/services/days-managemenet.service';
+import { TaskApiService } from './+tasks/services/task-api.service';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { DaysmanagementService } from './+state/services/days-managemenet.servic
     StoreModule.forFeature(fromTasks.TASKS_FEATURE_KEY, fromTasks.tasksReducer),
     EffectsModule.forFeature([TasksEffects]),
   ],
-  providers: [TasksFacade, DaysmanagementService],
+  providers: [TasksFacade, DaysmanagementService, TaskApiService],
 })
 export class DaysManagementModule {}

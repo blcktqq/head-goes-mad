@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { select, Store, Action } from '@ngrx/store';
+import { map } from 'rxjs';
 
 import * as TasksActions from './tasks.actions';
+import { TasksEntity } from './tasks.models';
 import * as TasksFeature from './tasks.reducer';
 import * as TasksSelectors from './tasks.selectors';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TasksFacade {
   /**
    * Combine pieces of state using createSelector,
@@ -23,5 +25,11 @@ export class TasksFacade {
    */
   init() {
     this.store.dispatch(TasksActions.initTasks());
+  }
+  public createTask(task: TasksEntity) {
+    this.store.dispatch(TasksActions.createTask({ payload: task }));
+  }
+  public getTasksPerDay(id: string | null) {
+    return this.allTasks$.pipe(map((t) => t.filter((t) => t.dateId === id)));
   }
 }

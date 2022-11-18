@@ -31,7 +31,7 @@
   <div class="flex justify-between">
     <mat-form-field appearance="fill">
       <mat-label>Select</mat-label>
-      <mat-select matNativeControl formControlName="date">
+      <mat-select matNativeControl formControlName="dateId">
         <mat-option [value]="'heap'">{{ 'heap' | translate }}</mat-option>
         <mat-option [value]="day.id" *ngFor="let day of futureDates$ | async">
           {{ day.value | date }}</mat-option
@@ -42,12 +42,14 @@
   </div>
 </ng-container>
 <mat-dialog-actions>
-  <button mat-flat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+  <button mat-flat-button [mat-dialog-close]="null">
+    {{ 'cancel' | translate }}
+  </button>
   <button
     [disabled]="fg.invalid"
     color="primary"
     mat-flat-button
-    mat-dialog-close
+    [mat-dialog-close]="fg.getRawValue()"
   >
     {{ 'add_task' | translate }}
   </button>

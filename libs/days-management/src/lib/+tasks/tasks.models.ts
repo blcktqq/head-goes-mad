@@ -2,6 +2,8 @@
  * Interface for the 'Tasks' data
  */
 export interface TasksEntity {
-  id: string | number; // Primary ID
-  name: string;
+  id: string; // Primary ID
+  title: string;
+  description: string;
+  dateId: string | null;
 }

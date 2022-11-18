@@ -10,7 +10,7 @@ import {
   QueryList,
   ViewChildren,
 } from '@angular/core';
-import { min } from 'rxjs';
+import { concat, min, of } from 'rxjs';
 import { DaysEntity } from '../../+state/days.models';
 import { DayContainerItemDirective } from './day-container-item.directive';
 
@@ -28,7 +28,11 @@ export class DayContainerComponent implements AfterContentInit {
   viewChildren!: QueryList<DayContainerItemDirective>;
   public panelOpenState = false;
   ngAfterContentInit(): void {
-    this.viewChildren.changes.subscribe((changes) => console.log(changes));
+    concat(of(this.viewChildren, this.viewChildren.changes)).subscribe(
+      (changes) => {
+        console.log(changes);
+      }
+    );
   }
   onClick() {
     if (this.day) {

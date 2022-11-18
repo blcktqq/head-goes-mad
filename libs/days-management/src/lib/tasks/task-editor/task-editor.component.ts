@@ -26,7 +26,7 @@ export class TaskEditorComponent implements OnInit {
   public fg!: FormGroup<{
     title: FormControl<string | null>;
     description: FormControl<string | null>;
-    date: FormControl<string | null>;
+    dateId: FormControl<string | null>;
   }>;
   public futureDates$ = this.daysFacade.ongoingDays$.pipe(
     map((dates) =>
@@ -49,7 +49,7 @@ export class TaskEditorComponent implements OnInit {
         '',
         Validators.maxLength(this.maxDescriptionLength)
       ),
-      date: this.fb.control<string | null>(this.data?.id ?? null, [
+      dateId: this.fb.control<string | null>(this.data?.id ?? null, [
         Validators.required,
       ]),
     });
