@@ -13,6 +13,7 @@ export class DaysFacade {
    */
   loaded$ = this.store.pipe(select(DaysSelectors.getDaysLoaded));
   allDays$ = this.store.pipe(select(DaysSelectors.getAllDays));
+  ongoingDays$ = this.store.pipe(select(DaysSelectors.getOngoingDays));
   selectedDays$ = this.store.pipe(select(DaysSelectors.getSelected));
 
   constructor(private readonly store: Store) {}

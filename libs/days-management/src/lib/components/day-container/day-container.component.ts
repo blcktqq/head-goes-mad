@@ -28,7 +28,6 @@ export class DayContainerComponent implements AfterContentInit {
   viewChildren!: QueryList<DayContainerItemDirective>;
   public panelOpenState = false;
   ngAfterContentInit(): void {
-    console.log(this.viewChildren.first);
     this.viewChildren.changes.subscribe((changes) => console.log(changes));
   }
   onClick() {

@@ -1,0 +1,54 @@
+<h2 mat-dialog-header>{{ 'task.title' | translate }}</h2>
+<ng-container mat-dialog-content [formGroup]="fg">
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'task.create.title.title' | translate }}</mat-label>
+    <input
+      matInput
+      [maxLength]="maxTitleLength"
+      formControlName="title"
+      [placeholder]="'task.create.title.placeholder' | translate"
+      cdkFocusInitial
+    />
+    <mat-hint *ngIf="getControl('title')?.value.length" align="end"
+      >{{ getControl('title')?.value.length }}/{{ maxTitleLength }}</mat-hint
+    >
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>{{ 'task.create.description.title' | translate }}</mat-label>
+    <textarea
+      matInput
+      #input
+      [maxLength]="maxDescriptionLength"
+      formControlName="description"
+      [placeholder]="'task.create.description.placeholder' | translate"
+    ></textarea>
+    <mat-hint *ngIf="getControl('description')?.value.length" align="end"
+      >{{ getControl('description')?.value.length }}/{{
+        maxDescriptionLength
+      }}</mat-hint
+    >
+  </mat-form-field>
+  <div class="flex justify-between">
+    <mat-form-field appearance="fill">
+      <mat-label>Select</mat-label>
+      <mat-select matNativeControl formControlName="date">
+        <mat-option [value]="'heap'">{{ 'heap' | translate }}</mat-option>
+        <mat-option [value]="day.id" *ngFor="let day of futureDates$ | async">
+          {{ day.value | date }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <hgm-add-new-button class="self-center"></hgm-add-new-button>
+  </div>
+</ng-container>
+<mat-dialog-actions>
+  <button mat-flat-button mat-dialog-close>{{ 'cancel' | translate }}</button>
+  <button
+    [disabled]="fg.invalid"
+    color="primary"
+    mat-flat-button
+    mat-dialog-close
+  >
+    {{ 'add_task' | translate }}
+  </button>
+</mat-dialog-actions>

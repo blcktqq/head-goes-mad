@@ -1,8 +1,22 @@
 import { Injectable } from '@angular/core';
 import { FirebaseStoreProvider } from '@hgm/firebase-providers';
+import { sub } from 'date-fns';
 import { get, push, ref } from 'firebase/database';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
-
+import {
+  addDoc,
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from 'firebase/firestore';
+import { Subject } from 'rxjs';
+export interface IDocData {
+  date: string;
+  description: string;
+  id: string;
+  userId: string;
+}
 @Injectable()
 export class DaysmanagementService {
   constructor(private database: FirebaseStoreProvider) {}
@@ -24,7 +38,7 @@ export class DaysmanagementService {
     console.log(result);
     return result.id;
   }
-  public async getDays(userId: string) {
+  public async getDays(userId: string): Promise<IDocData[]> {
     const db = this.database.getFireStore();
     const collectionRef = collection(db, `days`);
     const q = query(collectionRef, where('userId', '==', userId));
@@ -38,5 +52,20 @@ export class DaysmanagementService {
           userId: string;
         }
     );
+  }
+  public getDays$(userId: string) {
+    const db = this.database.getFireStore();
+    const collectionRef = collection(db, `days`);
+    const q = query(collectionRef, where('userId', '==', userId));
+    const subject = new Subject<IDocData[]>();
+    onSnapshot(
+      q,
+      (doc) => {
+        subject.next(doc.docs.map((d) => d.data() as IDocData));
+      },
+      () => ({}),
+      () => subject.complete()
+    );
+    return subject.asObservable();
   }
 }

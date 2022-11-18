@@ -8,6 +8,22 @@
   "description": "Description",
   "heap": "Heap",
   "add_task": "Add task",
+  "task": {
+    "title": "Describe your task",
+    "create": {
+      "title": {
+        "title": "Enter a task title",
+        "placeholder": "Ex. Create a task"
+      },
+      "description": {
+        "title": "Add description",
+        "placeholder": "Ex. Create a meeting with designers in teams"
+      }
+    }
+  },
+  "validation": {
+    "max_characters": "Max {value} characters"
+  },
   "auth": {
     "sign_in_with_google": "Sign in with google",
     "sign_out": "Sign out"

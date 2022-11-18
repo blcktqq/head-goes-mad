@@ -24,4 +24,5 @@ export * from './lib/+state/days.models';
 export { DaysActions, DaysFeature, DaysSelectors };
 export * from './lib/days-management.module';
 
-export * from './lib/components'
+export * from './lib/components';
+export * from './lib/tasks';

@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { isAfter, isToday } from 'date-fns';
 import { DAYS_FEATURE_KEY, DaysState, daysAdapter } from './days.reducer';
 
 // Lookup the 'Days' feature state managed by NgRx
@@ -19,7 +20,9 @@ export const getDaysError = createSelector(
 export const getAllDays = createSelector(getDaysState, (state: DaysState) =>
   selectAll(state)
 );
-
+export const getOngoingDays = createSelector(getAllDays, (state) =>
+  state.filter((day) => isToday(day.date) || isAfter(day.date, new Date()))
+);
 export const getDaysEntities = createSelector(
   getDaysState,
   (state: DaysState) => selectEntities(state)

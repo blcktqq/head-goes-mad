@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChainViewComponent } from './chain-view/chain-view.component';
 import { ChainViewRoutingModule } from './chain-view.routing-module';
-import { DaysManagementComponentsModule } from '@hgm/days-management';
+import {
+  DaysManagementComponentsModule,
+  TasksModule,
+} from '@hgm/days-management';
 
 @NgModule({
   declarations: [ChainViewComponent],
@@ -10,6 +13,7 @@ import { DaysManagementComponentsModule } from '@hgm/days-management';
     CommonModule,
     ChainViewRoutingModule,
     DaysManagementComponentsModule,
+    TasksModule,
   ],
   exports: [ChainViewComponent],
 })

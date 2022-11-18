@@ -3,7 +3,7 @@ import { ISignedInUser } from '@hgm/common';
 import { UserEntity, UserFacade } from '@hgm/user';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
-import { filter, map, switchMap } from 'rxjs';
+import { combineLatest, concat, filter, map, switchMap } from 'rxjs';
 
 import * as DaysActions from './days.actions';
 import { DaysEntity } from './days.models';
@@ -42,7 +42,12 @@ export class DaysEffects {
         run: (action) =>
           this.userFacade.selectedUser$.pipe(
             filter((v): v is UserEntity => !!v),
-            switchMap((v) => this.dayManagementService.getDays(v.id)),
+            switchMap((v) =>
+              concat(
+                this.dayManagementService.getDays(v.id),
+                this.dayManagementService.getDays$(v.id)
+              )
+            ),
             map((days) =>
               DaysActions.loadDaysSuccess({
                 days: days.map(

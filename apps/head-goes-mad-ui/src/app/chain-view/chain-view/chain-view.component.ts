@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
-import { DaysEntity, DaysFacade } from '@hgm/days-management';
+import {
+  DaysEntity,
+  DaysFacade,
+  TaskEditorComponent,
+} from '@hgm/days-management';
 import { map } from 'rxjs';
 
 @Component({
@@ -9,7 +14,7 @@ import { map } from 'rxjs';
   styleUrls: ['./chain-view.component.scss'],
 })
 export class ChainViewComponent implements OnInit {
-  constructor(private daysFacade: DaysFacade) {}
+  constructor(private daysFacade: DaysFacade, private matDialog: MatDialog) {}
 
   public days$ = this.daysFacade.allDays$.pipe(
     map((days) => days.filter((d) => !d.isHeap))
@@ -21,6 +26,8 @@ export class ChainViewComponent implements OnInit {
     this.daysFacade.init();
   }
   createTask(day: DaysEntity) {
-    console.log(day);
+    const config = new MatDialogConfig();
+    config.data = day;
+    this.matDialog.open(TaskEditorComponent, config);
   }
 }

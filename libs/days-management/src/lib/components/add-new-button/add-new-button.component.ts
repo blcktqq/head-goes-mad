@@ -22,7 +22,6 @@ export class AddNewButtonComponent {
       )
       .subscribe((result) => {
         this.daysFacade.createDay(result.date, result.description);
-        this.daysFacade.init()
       });
   }
 }
