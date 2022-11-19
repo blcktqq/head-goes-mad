@@ -5,17 +5,22 @@ import { get, push, ref } from 'firebase/database';
 import {
   addDoc,
   collection,
+  DocumentData,
   getDocs,
   onSnapshot,
+  orderBy,
   query,
+  QuerySnapshot,
+  serverTimestamp,
   where,
 } from 'firebase/firestore';
 import { Subject } from 'rxjs';
 export interface IDocData {
-  date: string;
+  date: Date;
   description: string;
   id: string;
   userId: string;
+  createdAt: Date;
 }
 @Injectable()
 export class DaysmanagementService {
@@ -27,45 +32,52 @@ export class DaysmanagementService {
   }) {
     const db = this.database.getFireStore();
     const collectionRef = collection(db, `days`);
-    const id = crypto.randomUUID();
-    const result = await addDoc(collectionRef, {
-      date: data.date.toUTCString(),
-      description: data.description,
-      id,
-      userId: data.userId,
-    });
 
-    console.log(result);
+    const result = await addDoc(collectionRef, {
+      date: data.date,
+      description: data.description,
+      userId: data.userId,
+      createdAt: serverTimestamp(),
+    });
     return result.id;
   }
   public async getDays(userId: string): Promise<IDocData[]> {
-    const db = this.database.getFireStore();
-    const collectionRef = collection(db, `days`);
-    const q = query(collectionRef, where('userId', '==', userId));
-    const result = await getDocs(q);
-    return result.docs.map(
-      (doc) =>
-        doc.data() as {
-          date: string;
-          description: string;
-          id: string;
-          userId: string;
-        }
-    );
+    const result = await getDocs(this.getDocsRef(userId));
+    return this.mapDocs(result);
   }
   public getDays$(userId: string) {
-    const db = this.database.getFireStore();
-    const collectionRef = collection(db, `days`);
-    const q = query(collectionRef, where('userId', '==', userId));
     const subject = new Subject<IDocData[]>();
     onSnapshot(
-      q,
+      this.getDocsRef(userId),
       (doc) => {
-        subject.next(doc.docs.map((d) => d.data() as IDocData));
+        subject.next(this.mapDocs(doc));
       },
       () => ({}),
       () => subject.complete()
     );
     return subject.asObservable();
+  }
+  private mapDocs(snapshot: QuerySnapshot<DocumentData>) {
+    return snapshot.docs.map((d) => {
+      const data = d.data();
+
+      return {
+        ...d.data(),
+        createdAt: data['createdAt']?.toDate(),
+        date: data['date']?.toDate(),
+        id: d.id,
+      } as IDocData;
+    });
+  }
+
+  private getDocsRef(userId: string) {
+    const db = this.database.getFireStore();
+    const collectionRef = collection(db, `days`);
+    const q = query(
+      collectionRef,
+      where('userId', '==', userId),
+      orderBy('date', 'asc')
+    );
+    return q;
   }
 }

@@ -3,22 +3,24 @@
 ></hgm-add-new-button>
 
 <div class="flex flex-col">
-  <hgm-day-container
-    [day]="day"
-    (createTask)="createTask($event)"
-    *ngFor="let day of days$ | async"
-  >
-    <div
-      class="border-solid border-spacing-0"
-      hgmDayContainerItem
-      *ngFor="let item of getTasksPerDay$(day.id) | async"
+  <div class="container">
+    <hgm-day-container
+      [day]="day"
+      (createTask)="createTask($event)"
+      *ngFor="let day of days$ | async"
     >
-      <p>{{ item.title }}</p>
-      <p>{{ item.description }}</p>
-    </div>
-  </hgm-day-container>
+      <div
+        class="border-solid border-spacing-0"
+        hgmDayContainerItem
+        *ngFor="let item of getTasksPerDay$(day.id) | async"
+      >
+        <p>{{ item.title }}</p>
+        <p>{{ item.description }}</p>
+      </div>
+    </hgm-day-container>
+  </div>
   <div class="spacer"></div>
-  <hgm-day-container (createTask)="createTask($event)" [day]="heap$ | async">
+  <hgm-day-container class="sticky bottom-0 mat-elevation-z8" (createTask)="createTask($event)" [day]="heap$ | async">
     <div
       class="border-solid border-spacing-0"
       hgmDayContainerItem

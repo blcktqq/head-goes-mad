@@ -19,6 +19,5 @@ export class AppComponent implements OnInit {
     //   this.translateService.getBrowserLang() ?? 'en'
     // );
     // this.translateService.use(this.translateService.getBrowserLang() ?? 'en');
-    console.log('Hello world');
   }
 }

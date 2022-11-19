@@ -13,7 +13,9 @@ export class DaysFacade {
    */
   loaded$ = this.store.pipe(select(DaysSelectors.getDaysLoaded));
   allDays$ = this.store.pipe(select(DaysSelectors.getAllDays));
+  heap$ = this.store.pipe(select(DaysSelectors.getHeap));
   ongoingDays$ = this.store.pipe(select(DaysSelectors.getOngoingDays));
+  outdatedDays$ = this.store.pipe(select(DaysSelectors.getOutdatedDays));;
   selectedDays$ = this.store.pipe(select(DaysSelectors.getSelected));
 
   constructor(private readonly store: Store) {}

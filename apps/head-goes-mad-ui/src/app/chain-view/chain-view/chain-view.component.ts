@@ -22,12 +22,9 @@ export class ChainViewComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
 
-  public days$ = this.daysFacade.allDays$.pipe(
-    map((days) => days.filter((d) => !d.isHeap))
-  );
-  public heap$ = this.daysFacade.allDays$.pipe(
-    map((days) => days.find((d) => d.isHeap) ?? null)
-  );
+  public days$ = this.daysFacade.ongoingDays$;
+  public heap$ = this.daysFacade.heap$;
+
   ngOnInit(): void {
     this.daysFacade.init();
     this.tasksFacade.init();

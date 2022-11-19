@@ -20,19 +20,13 @@ export class FirebaseAuthProvider {
   private googleProvider = new GoogleAuthProvider();
   private authStateChangeSubjects = new ReplaySubject<User | null>(1);
   constructor(private app: FirebaseAppProvider) {
-    // this.googleProvider.addScope(
-    //   'https://www.googleapis.com/auth/contacts.readonly'
-    // );
     this.auth.languageCode = 'ua';
     getRedirectResult(this.auth).then((res) => {
-      console.log(res?.user);
-      console.log(res);
       if (res?.user) {
         this.authStateChangeSubjects.next(res.user ?? null);
       }
     });
     onAuthStateChanged(this.auth, (user) => {
-      console.log(user);
       this.authStateChangeSubjects.next(user);
     });
   }
@@ -55,13 +49,11 @@ export class FirebaseAuthProvider {
     try {
       const redirectResult = await getRedirectResult(this.auth);
       if (redirectResult) {
-        console.log(redirectResult);
       } else {
         const signInResult = await signInWithRedirect(
           this.auth,
           this.googleProvider
         );
-        console.log(signInResult);
       }
     } catch (ex) {
       console.log(ex);

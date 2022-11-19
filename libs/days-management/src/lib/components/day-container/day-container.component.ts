@@ -28,11 +28,11 @@ export class DayContainerComponent implements AfterContentInit {
   viewChildren!: QueryList<DayContainerItemDirective>;
   public panelOpenState = false;
   ngAfterContentInit(): void {
-    concat(of(this.viewChildren, this.viewChildren.changes)).subscribe(
-      (changes) => {
-        console.log(changes);
-      }
-    );
+    /** empty line; */
+    // concat(of(this.viewChildren, this.viewChildren.changes)).subscribe(
+    //   (changes) => {
+    //   }
+    // );
   }
   onClick() {
     if (this.day) {

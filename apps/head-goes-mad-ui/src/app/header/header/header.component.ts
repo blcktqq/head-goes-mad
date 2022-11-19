@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     .observe([Breakpoints.XSmall])
     .pipe(map((value) => value.matches));
   ngOnInit(): void {
-    console.log('wow');
+
   }
 
   public signout() {

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 
 import * as TasksActions from './tasks.actions';
 import { TasksEntity } from './tasks.models';
-import * as TasksFeature from './tasks.reducer';
 import * as TasksSelectors from './tasks.selectors';
 
 @Injectable({ providedIn: 'root' })

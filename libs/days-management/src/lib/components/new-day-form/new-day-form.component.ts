@@ -7,7 +7,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DaysFacade } from '../../+state/days.facade';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { isBefore } from 'date-fns';
+import { isBefore, isToday } from 'date-fns';
 
 @Component({
   selector: 'hgm-new-day-form',
@@ -43,7 +43,7 @@ export class NewDayFormComponent implements OnInit {
     if (!date) {
       return false;
     }
-    const isOldDate = isBefore(date, new Date());
+    const isOldDate = isBefore(date, new Date()) && !isToday(date);
     return (
       !isOldDate &&
       !this.blackListedDays.some(

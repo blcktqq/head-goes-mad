@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { isAfter, isToday } from 'date-fns';
+import { isAfter, isBefore, isToday } from 'date-fns';
 import { DAYS_FEATURE_KEY, DaysState, daysAdapter } from './days.reducer';
 
 // Lookup the 'Days' feature state managed by NgRx
@@ -21,7 +21,14 @@ export const getAllDays = createSelector(getDaysState, (state: DaysState) =>
   selectAll(state)
 );
 export const getOngoingDays = createSelector(getAllDays, (state) =>
-  state.filter((day) => isToday(day.date) || isAfter(day.date, new Date()))
+  state.filter(
+    (day) => !day.isHeap && (isToday(day.date) || isAfter(day.date, new Date()))
+  )
+);
+export const getOutdatedDays = createSelector(getAllDays, (state) =>
+  state.filter(
+    (day) => !day.isHeap && !isToday(day.date) && isBefore(day.date, new Date())
+  )
 );
 export const getDaysEntities = createSelector(
   getDaysState,
@@ -37,4 +44,9 @@ export const getSelected = createSelector(
   getDaysEntities,
   getSelectedId,
   (entities, selectedId) => (selectedId ? entities[selectedId] : undefined)
+);
+
+export const getHeap = createSelector(
+  getAllDays,
+  (days) => days.find((d) => d.isHeap) ?? null
 );

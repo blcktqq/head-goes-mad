@@ -3,6 +3,7 @@ import { ISignedInUser } from '@hgm/common';
 import { UserEntity, UserFacade } from '@hgm/user';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { fetch } from '@nrwl/angular';
+import { parseISO } from 'date-fns';
 import { combineLatest, concat, filter, map, switchMap } from 'rxjs';
 
 import * as DaysActions from './days.actions';
@@ -15,24 +16,19 @@ export class DaysEffects {
   createDay$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DaysActions.createDay),
-      fetch({
-        onError: (action, error) => {
-          console.error(error);
-          return DaysActions.createDayFailurt();
-        },
-        run: ({ payload: { date, description } }) =>
-          this.userFacade.selectedUser$.pipe(
-            filter((v): v is UserEntity => !!v),
-            switchMap((v) =>
-              this.dayManagementService.createDay({
-                date: date,
-                description: description,
-                userId: v.id,
-              })
-            ),
-            map((id) => DaysActions.createDaySuccess())
+      switchMap(({ payload: { date, description } }) =>
+        this.userFacade.selectedUser$.pipe(
+          filter((v): v is UserEntity => !!v),
+          switchMap((v) =>
+            this.dayManagementService.createDay({
+              date: date,
+              description: description,
+              userId: v.id,
+            })
           ),
-      })
+          map((id) => DaysActions.createDaySuccess())
+        )
+      )
     )
   );
   init$ = createEffect(() =>
@@ -48,18 +44,18 @@ export class DaysEffects {
                 this.dayManagementService.getDays$(v.id)
               )
             ),
-            map((days) =>
-              DaysActions.loadDaysSuccess({
+            map((days) => {
+              return DaysActions.loadDaysSuccess({
                 days: days.map(
                   (v) =>
                     ({
                       id: v.id,
-                      date: new Date(v.date),
+                      date: v.date,
                       description: v.description,
                     } as DaysEntity)
                 ),
-              })
-            )
+              });
+            })
           ),
         onError: (action, error) => {
           console.error('Error', error);

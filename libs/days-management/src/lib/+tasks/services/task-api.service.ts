@@ -34,6 +34,9 @@ export class TaskApiService {
 
     return result.id;
   }
+  public async updateTask(task: ITask) {
+    console.log('What am I doing here?', task);
+  }
   public async getTasks(userId: string): Promise<ITask[]> {
     const db = this.database.getFireStore();
     const collectionRef = collection(db, `tasks`);
