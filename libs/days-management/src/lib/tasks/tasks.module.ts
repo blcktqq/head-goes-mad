@@ -8,9 +8,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
 import { DaysManagementComponentsModule } from '../components';
+import { MatCardModule } from '@angular/material/card';
 import { TaskEditorComponent } from './task-editor/task-editor.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { TaskViewerComponent } from './task-viewer/task-viewer.component';
+import { MatIconModule } from '@angular/material/icon';
+import { CompleteTaskDialogComponent } from './complete-task-dialog/complete-task-dialog.component';
 @NgModule({
-  declarations: [TaskEditorComponent],
+  declarations: [
+    TaskEditorComponent,
+    TaskViewerComponent,
+    CompleteTaskDialogComponent,
+  ],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -21,7 +30,10 @@ import { TaskEditorComponent } from './task-editor/task-editor.component';
     TranslateModule,
     MatButtonModule,
     DaysManagementComponentsModule,
+    MatCardModule,
+    MatDividerModule,
+    MatIconModule,
   ],
-  exports: [TaskEditorComponent],
+  exports: [TaskEditorComponent, TaskViewerComponent],
 })
 export class TasksModule {}

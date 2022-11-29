@@ -1,4 +1,4 @@
-<mat-accordion *ngIf="day">
+<mat-accordion displayMode="flat" *ngIf="day">
   <mat-expansion-panel
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false"
@@ -11,10 +11,11 @@
         {{ day.description }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <!-- <p>I'm visible because I am open</p> -->
     <ng-content></ng-content>
     <mat-action-row>
-      <button mat-button color="primary" (click)="onClick()">{{ 'add_task' | translate }}</button>
+      <button mat-button color="primary" (click)="onClick()">
+        {{ 'add_task' | translate }}
+      </button>
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

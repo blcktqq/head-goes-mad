@@ -34,9 +34,10 @@ export class ChainViewComponent implements OnInit {
   }
   createTask(day: DaysEntity) {
     const config = new MatDialogConfig();
-    config.data = day;
+    config.data = { dateId: day.id };
     const ref = this.matDialog.open(TaskEditorComponent, config);
     ref.afterClosed().subscribe((data: TasksEntity) => {
+      console.log(data)
       if (data) {
         this.tasksFacade.createTask({
           ...data,

@@ -24,3 +24,16 @@ export const createTaskSuccess = createAction(
 export const createTaskFailurt = createAction(
   '[Tasks Page] Create Task Failure'
 );
+
+export const updateTask = createAction(
+  '[Tasks Page] Update Task',
+  props<{ task: Partial<TasksEntity>; taskId: string }>()
+);
+
+export const updateTaskSuccess = createAction(
+  '[Tasks Page] Update Task Success'
+);
+
+export const updateTaskFailure = createAction(
+  '[Tasks Page] Update Task Failure'
+);

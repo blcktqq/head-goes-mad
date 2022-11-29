@@ -17,7 +17,7 @@ import {
   tap,
 } from 'rxjs';
 import { DaysFacade } from '../+state/days.facade';
-import { TaskApiService } from './services/task-api.service';
+import { TaskApiService, TaskStatusEnum } from './services/task-api.service';
 
 import * as TasksActions from './tasks.actions';
 
@@ -88,21 +88,19 @@ export class TasksEffects {
         ),
         distinctUntilKeyChanged('id'),
         mergeMap((task) =>
-          this.userFacade.selectedUser$
-            .pipe(
-              take(1),
-              filter((v): v is UserEntity => !!v)
-            )
-            .pipe(
-              switchMap((user) =>
-                this.apiService.updateTask({ ...task, userId: user.id })
-              )
-            )
+          this.apiService.updateTask(task.id, { dateId: null })
         )
       ),
     { dispatch: false }
   );
 
+  updateTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TasksActions.updateTask),
+      switchMap(({ task, taskId }) => this.apiService.updateTask(taskId, task)),
+      map(() => TasksActions.updateTaskSuccess())
+    )
+  );
   constructor(
     private readonly actions$: Actions,
     private userFacade: UserFacade,

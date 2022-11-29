@@ -1,3 +1,5 @@
+import { TaskStatusEnum } from "./services/task-api.service";
+
 /**
  * Interface for the 'Tasks' data
  */
@@ -6,4 +8,6 @@ export interface TasksEntity {
   title: string;
   description: string;
   dateId: string | null;
+  status: TaskStatusEnum;
+  createdAt: Date;
 }

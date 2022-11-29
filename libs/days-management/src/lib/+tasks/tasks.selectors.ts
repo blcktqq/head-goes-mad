@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { TaskStatusEnum } from './services/task-api.service';
 import { TASKS_FEATURE_KEY, TasksState, tasksAdapter } from './tasks.reducer';
 
 // Lookup the 'Tasks' feature state managed by NgRx
@@ -19,6 +20,9 @@ export const getTasksError = createSelector(
 
 export const getAllTasks = createSelector(getTasksState, (state: TasksState) =>
   selectAll(state)
+);
+export const getUncompletedTasks = createSelector(getAllTasks, (tasks) =>
+  tasks.filter((t) => t.status !== TaskStatusEnum.Completed)
 );
 
 export const getTasksEntities = createSelector(
