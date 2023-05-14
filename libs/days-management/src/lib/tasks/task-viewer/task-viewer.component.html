@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>
+    <button *ngIf="task.status !== TaskStatusEnum.Completed" mat-flat-button (click)="complete()">
+      <mat-icon color="accent">check_circle</mat-icon>
+    </button>
+    <button *ngIf="task.status === TaskStatusEnum.Completed" mat-flat-button (click)="uncomplete()">
+      <mat-icon color="accent">cancel</mat-icon>
+    </button>
+    <button class="right" mat-flat-button (click)="delete()" ><mat-icon color="primary">delete</mat-icon></button>
+    <button class="right" mat-flat-button (click)="edit()" ><mat-icon color="primary">edit</mat-icon></button>
+    {{ task.title }}
+    <mat-icon class="completed" *ngIf="task.status === TaskStatusEnum.Completed">done</mat-icon>
+  </mat-card-title>
+  <mat-divider *ngIf="task.description"></mat-divider>
+  <mat-card-content *ngIf="task.description">
+    <p>{{ task.description }}</p>
+  </mat-card-content>
+</mat-card>

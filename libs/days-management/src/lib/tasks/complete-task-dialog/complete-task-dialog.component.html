@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Complete task</h1>
+<div mat-dialog-content>Are you sure you want to finish the task?</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="false">
+    No
+  </button>
+  <button mat-button color="primary" [mat-dialog-close]="true">
+    Yes <mat-icon class="completed">done</mat-icon>
+  </button>
+</div>
