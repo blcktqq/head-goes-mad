@@ -4,7 +4,7 @@ export const environment: IAppConfig = {
   production: true,
   firebase: {
     apiKey: 'AIzaSyBvTKGJUG9pUlc1W9OHJlywjDO5Guwr6TM',
-    authDomain: 'head-goes-mad.firebaseapp.com',
+    authDomain: location.host,
     databaseURL:
       'https://head-goes-mad-default-rtdb.europe-west1.firebasedatabase.app',
     projectId: 'head-goes-mad',
