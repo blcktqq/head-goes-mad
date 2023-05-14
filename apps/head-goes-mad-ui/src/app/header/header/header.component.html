@@ -30,6 +30,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <ng-template #navigationLinks>
-  <a mat-button routerLink="chain">{{ 'chain' | translate }}</a>
-  <a mat-button routerLink="today">{{ 'today' | translate }}</a>
+  <a mat-button routerLinkActive="mat-accent" routerLink="today">{{ 'today' | translate }}</a>
+  <a mat-button routerLinkActive="mat-accent" routerLink="chain">{{ 'chain' | translate }}</a>
+  <a mat-button routerLinkActive="mat-accent" routerLink="history">{{ 'history' | translate }}</a>
 </ng-template>

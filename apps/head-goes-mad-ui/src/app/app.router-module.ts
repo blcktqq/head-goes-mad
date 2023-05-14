@@ -26,6 +26,13 @@ const routes: Routes = [
       import('./today-view/today-view.module').then((m) => m.TodayViewModule),
   },
   {
+    path: 'history',
+    canActivate: [AuthGuardGuard],
+    canActivateChild: [AuthGuardGuard],
+    loadChildren: () =>
+      import('./history-view/history-view.module').then((m) => m.HistoryViewModule),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('./authentication/authentication.module').then(

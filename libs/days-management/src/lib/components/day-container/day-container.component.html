@@ -1,11 +1,12 @@
-<mat-accordion displayMode="flat" *ngIf="day">
+<mat-accordion displayMode="flat" *ngIf="day && tasks?.length">
   <mat-expansion-panel
     (opened)="panelOpenState = true"
     (closed)="panelOpenState = false"
   >
-    <mat-expansion-panel-header>
+    <mat-expansion-panel-header >
       <mat-panel-title>
         {{ day.isHeap ? ('heap' | translate) : (day.date | date) }}
+        {{' —  Tasks: ' + tasks?.length + ' (completed: ' + (completedTasks?.length || '-') + ')' }}
       </mat-panel-title>
       <mat-panel-description *ngIf="day.description">
         {{ day.description }}
@@ -13,7 +14,7 @@
     </mat-expansion-panel-header>
     <ng-content></ng-content>
     <mat-action-row>
-      <button mat-button color="primary" (click)="onClick()">
+      <button *ngIf="shouldCreateTasks" mat-button color="primary" (click)="onClick()">
         {{ 'add_task' | translate }}
       </button>
     </mat-action-row>

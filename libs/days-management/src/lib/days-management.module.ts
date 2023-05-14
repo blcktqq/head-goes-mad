@@ -4,7 +4,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromDays from './+state/days.reducer';
 import { DaysEffects } from './+state/days.effects';
-import { DaysFacade } from './+state/days.facade';
 import * as fromTasks from './+tasks/tasks.reducer';
 import { TasksEffects } from './+tasks/tasks.effects';
 import { TasksFacade } from './+tasks/tasks.facade';
@@ -19,6 +18,6 @@ import { TaskApiService } from './+tasks/services/task-api.service';
     StoreModule.forFeature(fromTasks.TASKS_FEATURE_KEY, fromTasks.tasksReducer),
     EffectsModule.forFeature([TasksEffects]),
   ],
-  providers: [TasksFacade, DaysmanagementService, TaskApiService],
+  providers: [DaysmanagementService, TaskApiService],
 })
 export class DaysManagementModule {}

@@ -1,1 +1,16 @@
-<p>today-view works!</p>
+<ng-container
+      *ngIf="today$ | async as today"
+    >
+    <div class="flex w-full justify-end"><hgm-add-new-button
+  class="m-1 pr-2"
+></hgm-add-new-button>
+<hgm-add-new-task-button [dateId]="today.id" class="m-1 pr-2"></hgm-add-new-task-button>
+</div>
+
+      <hgm-task-viewer
+        class="m-4"
+        hgmDayContainerItem
+        *ngFor="let item of getTasksPerDay$(today.id) | async"
+        [task]="item"
+      ></hgm-task-viewer>
+    </ng-container>

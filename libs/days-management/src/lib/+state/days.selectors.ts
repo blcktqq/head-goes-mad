@@ -25,6 +25,11 @@ export const getOngoingDays = createSelector(getAllDays, (state) =>
     (day) => !day.isHeap && (isToday(day.date) || isAfter(day.date, new Date()))
   )
 );
+export const getToday = createSelector(getAllDays, (state) =>
+  state.find(
+    (day) => isToday(day.date)
+  )
+);
 export const getOutdatedDays = createSelector(getAllDays, (state) =>
   state.filter(
     (day) => !day.isHeap && !isToday(day.date) && isBefore(day.date, new Date())

@@ -15,6 +15,7 @@ export class DaysFacade {
   allDays$ = this.store.pipe(select(DaysSelectors.getAllDays));
   heap$ = this.store.pipe(select(DaysSelectors.getHeap));
   ongoingDays$ = this.store.pipe(select(DaysSelectors.getOngoingDays));
+  today$ = this.store.pipe(select(DaysSelectors.getToday));
   outdatedDays$ = this.store.pipe(select(DaysSelectors.getOutdatedDays));;
   selectedDays$ = this.store.pipe(select(DaysSelectors.getSelected));
 

@@ -69,30 +69,30 @@ export class TasksEffects {
     )
   );
 
-  moveOutdatedToHeap$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(TasksActions.loadTasksSuccess),
-        map(({ tasks }) => tasks.filter((task) => task.dateId)),
+  // moveOutdatedToHeap$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(TasksActions.loadTasksSuccess),
+  //       map(({ tasks }) => tasks.filter((task) => task.dateId)),
 
-        switchMap((tasks) =>
-          this.daysFacade.outdatedDays$.pipe(
-            map((days) => {
-              return tasks.filter((task) => {
-                const day = days.find((day) => day.id === task.dateId);
-                return !!day;
-              });
-            }),
-            switchMap((tasks) => from(tasks))
-          )
-        ),
-        distinctUntilKeyChanged('id'),
-        mergeMap((task) =>
-          this.apiService.updateTask(task.id, { dateId: null })
-        )
-      ),
-    { dispatch: false }
-  );
+  //       switchMap((tasks) =>
+  //         this.daysFacade.outdatedDays$.pipe(
+  //           map((days) => {
+  //             return tasks.filter((task) => {
+  //               const day = days.find((day) => day.id === task.dateId);
+  //               return !!day;
+  //             });
+  //           }),
+  //           switchMap((tasks) => from(tasks))
+  //         )
+  //       ),
+  //       distinctUntilKeyChanged('id'),
+  //       mergeMap((task) =>
+  //         this.apiService.updateTask(task.id, { dateId: null })
+  //       )
+  //     ),
+  //   { dispatch: false }
+  // );
 
   updateTask$ = createEffect(() =>
     this.actions$.pipe(
@@ -101,6 +101,14 @@ export class TasksEffects {
       map(() => TasksActions.updateTaskSuccess())
     )
   );
+
+  deleteTask$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(TasksActions.deleteTask),
+    switchMap(({ taskId }) => this.apiService.deleteTask(taskId)),
+    map(() => TasksActions.deleteTaskSuccess())
+  )
+);
   constructor(
     private readonly actions$: Actions,
     private userFacade: UserFacade,

@@ -9,6 +9,7 @@ import {
   onSnapshot,
   doc,
   updateDoc,
+  deleteDoc,
   QuerySnapshot,
   DocumentData,
   serverTimestamp,
@@ -48,11 +49,17 @@ export class TaskApiService {
     return result.id;
   }
   public async updateTask(id: string, task: Partial<ITask>) {
-    console.log('What am I doing here?', task);
     const db = this.database.getFireStore();
     const ref = doc(db, 'tasks', id);
     await updateDoc(ref, { ...task, updatedAt: serverTimestamp() });
   }
+
+  public async deleteTask(id: string) {
+    const db = this.database.getFireStore();
+    const ref = doc(db, 'tasks', id);
+    await deleteDoc(ref);
+  }
+
   public async getTasks(userId: string): Promise<ITask[]> {
     const db = this.database.getFireStore();
     const collectionRef = collection(db, `tasks`);

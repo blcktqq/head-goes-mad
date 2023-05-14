@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { TodayViewRoutingModule } from './today-view-routing.module';
 import { TodayViewComponent } from './today-view.component';
+import { DaysManagementComponentsModule, TasksModule } from '@hgm/days-management';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { TodayViewComponent } from './today-view.component';
   ],
   imports: [
     CommonModule,
-    TodayViewRoutingModule
+    TodayViewRoutingModule,
+    DaysManagementComponentsModule,
+    TasksModule,
   ]
 })
 export class TodayViewModule { }

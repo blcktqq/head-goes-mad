@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { TaskStatusEnum } from './services/task-api.service';
 
 import * as TasksActions from './tasks.actions';
 import { TasksEntity } from './tasks.models';
@@ -30,9 +31,19 @@ export class TasksFacade {
   public createTask(task: TasksEntity) {
     this.store.dispatch(TasksActions.createTask({ payload: task }));
   }
+
+  public deleteTask(taskId: string) {
+    this.store.dispatch(TasksActions.deleteTask({ taskId }));
+  }
+
   public getTasksPerDay(id: string | null) {
+    return this.allTasks$.pipe(map((t) => t.filter((t) => t.dateId === id).sort((t) => t.status !== TaskStatusEnum.Completed ? -1 : 1)));
+  }
+
+  public getNonCompletedTasksPerDay(id: string | null) {
     return this.notCompleted$.pipe(map((t) => t.filter((t) => t.dateId === id)));
   }
+
   public updateTask(id: string, task: Partial<TasksEntity>) {
     this.store.dispatch(TasksActions.updateTask({ task, taskId: id }));
   }

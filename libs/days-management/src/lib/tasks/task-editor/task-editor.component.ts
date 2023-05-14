@@ -8,7 +8,6 @@ import {
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map } from 'rxjs';
 import { DaysFacade } from '../../+state/days.facade';
-import { DaysEntity } from '../../+state/days.models';
 import { TasksEntity } from '../../+tasks/tasks.models';
 
 @Component({
@@ -38,19 +37,19 @@ export class TaskEditorComponent implements OnInit {
     )
   );
   public getControl(name: string) {
-    return this.fg.get(name);
+    return this.fg?.get(name);
   }
   ngOnInit(): void {
     this.fg = this.fb.group({
-      title: this.fb.control(this.data.title ?? '', [
+      title: this.fb.control(this.data?.title ?? '', [
         Validators.required,
         Validators.maxLength(this.maxTitleLength),
       ]),
       description: this.fb.control(
-        this.data.description ?? '',
+        this.data?.description ?? '',
         Validators.maxLength(this.maxDescriptionLength)
       ),
-      dateId: this.fb.control<string | null>(this.data.dateId ?? null, [
+      dateId: this.fb.control<string | null>(this.data?.dateId ?? null, [
         Validators.required,
       ]),
     });

@@ -22,7 +22,7 @@ export class ChainViewComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
 
-  public days$ = this.daysFacade.ongoingDays$;
+  // public days$ = this.daysFacade.ongoingDays$;
   public heap$ = this.daysFacade.heap$;
 
   ngOnInit(): void {
@@ -37,7 +37,6 @@ export class ChainViewComponent implements OnInit {
     config.data = { dateId: day.id };
     const ref = this.matDialog.open(TaskEditorComponent, config);
     ref.afterClosed().subscribe((data: TasksEntity) => {
-      console.log(data)
       if (data) {
         this.tasksFacade.createTask({
           ...data,

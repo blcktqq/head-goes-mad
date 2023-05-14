@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ChainViewComponent } from './chain-view/chain-view.component';
 import { ChainViewRoutingModule } from './chain-view.routing-module';
 import {
+  AddNewTaskButtonComponent,
   DaysManagementComponentsModule,
   TasksModule,
 } from '@hgm/days-management';

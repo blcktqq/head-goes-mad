@@ -1,5 +1,5 @@
 <h2 mat-dialog-header>{{ 'task.title' | translate }}</h2>
-<ng-container mat-dialog-content [formGroup]="fg">
+<ng-container mat-dialog-content *ngIf="fg" [formGroup]="fg">
   <mat-form-field appearance="fill">
     <mat-label>{{ 'task.create.title.title' | translate }}</mat-label>
     <input
@@ -46,10 +46,10 @@
     {{ 'cancel' | translate }}
   </button>
   <button
-    [disabled]="fg.invalid"
+    [disabled]="fg?.invalid"
     color="primary"
     mat-flat-button
-    [mat-dialog-close]="fg.getRawValue()"
+    [mat-dialog-close]="fg?.getRawValue()"
   >
     {{ 'add_task' | translate }}
   </button>

@@ -1,33 +1,13 @@
-<hgm-add-new-button
-  class="m-1 flex w-full justify-end pr-2"
-></hgm-add-new-button>
 
-<div class="flex flex-col h-full">
-  <div class="container h-full flex flex-col">
-    <hgm-day-container
-      [day]="day"
-      (createTask)="createTask($event)"
-      *ngFor="let day of days$ | async"
-    >
-      <hgm-task-viewer
-        class="m-4"
-        hgmDayContainerItem
-        *ngFor="let item of getTasksPerDay$(day.id) | async"
-        [task]="item"
-      ></hgm-task-viewer>
-    </hgm-day-container>
-  </div>
-  <div class="spacer"></div>
-  <hgm-day-container
-    class="sticky bottom-0 mat-elevation-z8 mt-2"
-    (createTask)="createTask($event)"
-    [day]="heap$ | async"
-  >
-    <hgm-task-viewer
+<div class="flex w-full justify-end"><hgm-add-new-button
+  class="m-1 pr-2"
+></hgm-add-new-button>
+<hgm-add-new-task-button class="m-1 pr-2"></hgm-add-new-task-button>
+</div>
+<hgm-task-viewer
       class="border-solid border-spacing-0"
       hgmDayContainerItem
       *ngFor="let item of getTasksPerDay$(null) | async"
       [task]="item"
     ></hgm-task-viewer>
-  </hgm-day-container>
-</div>
+
