@@ -3,7 +3,7 @@ import { ISignedInUser } from '@hgm/common';
 import { FirebaseAuthProvider } from '@hgm/firebase-providers';
 import { createEffect, Actions, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { fetch } from '@nrwl/angular';
+import { fetch } from '@nx/angular';
 import { filter, from, iif, map, tap } from 'rxjs';
 
 import * as UserActions from './user.actions';

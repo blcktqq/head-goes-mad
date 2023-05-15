@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserEntity, UserFacade } from '@hgm/user';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { fetch, optimisticUpdate, pessimisticUpdate } from '@nrwl/angular';
+import { fetch, optimisticUpdate, pessimisticUpdate } from '@nx/angular';
 import { isBefore } from 'date-fns';
 import {
   concat,
@@ -103,12 +103,12 @@ export class TasksEffects {
   );
 
   deleteTask$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(TasksActions.deleteTask),
-    switchMap(({ taskId }) => this.apiService.deleteTask(taskId)),
-    map(() => TasksActions.deleteTaskSuccess())
-  )
-);
+    this.actions$.pipe(
+      ofType(TasksActions.deleteTask),
+      switchMap(({ taskId }) => this.apiService.deleteTask(taskId)),
+      map(() => TasksActions.deleteTaskSuccess())
+    )
+  );
   constructor(
     private readonly actions$: Actions,
     private userFacade: UserFacade,

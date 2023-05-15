@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ISignedInUser } from '@hgm/common';
 import { UserEntity, UserFacade } from '@hgm/user';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
+import { fetch } from '@nx/angular';
 import { parseISO } from 'date-fns';
 import { combineLatest, concat, filter, map, switchMap } from 'rxjs';
 

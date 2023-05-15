@@ -5,7 +5,7 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "apps/head-goes-mad-ui-e2e/cypress.config.ts",
         "devServerTarget": "head-goes-mad-ui:serve:development",
@@ -18,19 +18,13 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/head-goes-mad-ui-e2e/**/*.{js,ts}"
-        ]
+        "lintFilePatterns": ["apps/head-goes-mad-ui-e2e/**/*.{js,ts}"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": [
-    "head-goes-mad-ui"
-  ]
+  "implicitDependencies": ["head-goes-mad-ui"]
 }
