@@ -15,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './header/header.module';
 import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './app.router-module';
-import { DaysManagementModule } from 'libs/days-management/src';
+import { DaysManagementModule } from '@hgm/days-management';
+import { FIREBASE_PROVIDERS } from '@hgm/firebase-providers';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -51,6 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
     HeaderModule,
     RouterModule,
     AppRouterModule,
+    FIREBASE_PROVIDERS
   ],
   providers: [
     {

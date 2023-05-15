@@ -20,7 +20,6 @@
           "apps/head-goes-mad-ui/src/assets"
         ],
         "styles": [
-          "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
           "apps/head-goes-mad-ui/src/styles.scss"
         ],
         "scripts": []

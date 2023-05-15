@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthGuardGuard } from './auth-guard.guard';
@@ -30,7 +30,18 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard],
     canActivateChild: [AuthGuardGuard],
     loadChildren: () =>
-      import('./history-view/history-view.module').then((m) => m.HistoryViewModule),
+      import('./history-view/history-view.module').then(
+        (m) => m.HistoryViewModule
+      ),
+  },
+  {
+    path: 'ongoing',
+    canActivate: [() => inject(AuthGuardGuard).canActivate],
+    canActivateChild: [() => inject(AuthGuardGuard).canActivateChild],
+    loadComponent: () =>
+      import('./future-view/future-view.component').then(
+        (m) => m.FutureViewComponent
+      ),
   },
   {
     path: 'auth',

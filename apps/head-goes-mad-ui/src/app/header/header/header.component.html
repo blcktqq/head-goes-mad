@@ -1,6 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <span>HGM</span>
+    <span class="font-semibold text-xl">HGM</span>
     <div *ngIf="(isExtraSmall | async) === false" class="ml-1">
       <ng-continaer [ngTemplateOutlet]="navigationLinks"> </ng-continaer>
     </div>
@@ -30,7 +30,8 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <ng-template #navigationLinks>
-  <a mat-button routerLinkActive="mat-accent" routerLink="today">{{ 'today' | translate }}</a>
-  <a mat-button routerLinkActive="mat-accent" routerLink="chain">{{ 'chain' | translate }}</a>
-  <a mat-button routerLinkActive="mat-accent" routerLink="history">{{ 'history' | translate }}</a>
+  <a mat-button routerLinkActive="router-active-link" routerLink="today">{{ 'today' | translate }}</a>
+  <a mat-button routerLinkActive="router-active-link" routerLink="chain">{{ 'chain' | translate }}</a>
+  <a mat-button routerLinkActive="router-active-link" routerLink="history">{{ 'history' | translate }}</a>
+  <a mat-button routerLinkActive="router-active-link" routerLink="ongoing">{{ 'ongoing' | translate }}</a>
 </ng-template>

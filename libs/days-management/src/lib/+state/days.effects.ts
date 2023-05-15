@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ISignedInUser } from '@hgm/common';
 import { UserEntity, UserFacade } from '@hgm/user';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { fetch } from '@nx/angular';
-import { parseISO } from 'date-fns';
-import { combineLatest, concat, filter, map, switchMap } from 'rxjs';
+import { concat, filter, map, switchMap } from 'rxjs';
 
 import * as DaysActions from './days.actions';
 import { DaysEntity } from './days.models';
-import * as DaysFeature from './days.reducer';
 import { DaysmanagementService } from './services/days-managemenet.service';
 
 @Injectable()

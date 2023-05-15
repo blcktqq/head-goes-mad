@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+:host {
+  mat-panel-description {
+    position: relative;
+    .task-counter {
+      position: absolute;
+      right: 0;
+    }
+  }
+}

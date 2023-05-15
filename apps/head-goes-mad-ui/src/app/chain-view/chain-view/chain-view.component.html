@@ -1,13 +1,10 @@
-
-<div class="flex w-full justify-end"><hgm-add-new-button
-  class="m-1 pr-2"
-></hgm-add-new-button>
-<hgm-add-new-task-button class="m-1 pr-2"></hgm-add-new-task-button>
+<div class="flex w-full justify-end">
+  <hgm-add-new-button class="m-1 pr-2"></hgm-add-new-button>
+  <hgm-add-new-task-button class="m-1 pr-2"></hgm-add-new-task-button>
 </div>
 <hgm-task-viewer
-      class="border-solid border-spacing-0"
-      hgmDayContainerItem
-      *ngFor="let item of getTasksPerDay$(null) | async"
-      [task]="item"
-    ></hgm-task-viewer>
-
+  class="border-solid border-spacing-0"
+  hgmDayContainerItem
+  *ngFor="let item of getTasksPerDay$(null) | async"
+  [task]="item"
+></hgm-task-viewer>

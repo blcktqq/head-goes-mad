@@ -4,13 +4,11 @@ import {
   Component,
   computed,
   effect,
-  OnInit,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DaysFacade } from '../../+state/days.facade';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { isBefore, isToday } from 'date-fns';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { isBefore, isToday } from 'date-fns';
+import { DaysFacade } from '../../+state/days.facade';
 
 @Component({
   selector: 'hgm-new-day-form',

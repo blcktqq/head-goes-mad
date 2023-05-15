@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { getFirestore } from 'firebase/firestore';
-import { FirebaseAppProvider } from './firebase-app.provider';
+import { Injectable, inject } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseStoreProvider {
-  constructor(private appProvider: FirebaseAppProvider) {}
+  private firestore = inject(Firestore);
   public getFireStore() {
-    return getFirestore(this.appProvider.getAppProvider());
+    return this.firestore;
   }
 }

@@ -1,50 +1,38 @@
-import { Injectable } from '@angular/core';
-import { FirebaseAppProvider } from './firebase-app.provider';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithRedirect,
-  onAuthStateChanged,
-  User,
-  getRedirectResult,
-  signInWithPopup,
-} from 'firebase/auth';
-import { firstValueFrom, ReplaySubject, take } from 'rxjs';
-import { ISignedInUser } from '@hgm/common';
+import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  Auth,
+  GoogleAuthProvider,
+  getRedirectResult,
+  signInWithRedirect,
+  user,
+} from '@angular/fire/auth';
+import { ISignedInUser } from '@hgm/common';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseAuthProvider {
-  private auth = getAuth(this.app.getAppProvider());
+  private auth = inject(Auth);
   private googleProvider = new GoogleAuthProvider();
-  private authStateChangeSubjects = new ReplaySubject<User | null>(1);
-  private authStateChange = toSignal(this.authStateChangeSubjects.asObservable())
-  constructor(private app: FirebaseAppProvider) {
+  private authStateChangeSubjects = user(this.auth).pipe(
+    filter((u) => !!u || u !== null)
+  );
+  private authStateChange = toSignal(this.authStateChangeSubjects);
+  constructor() {
     this.auth.languageCode = 'ua';
-    getRedirectResult(this.auth).then((res) => {
-      if (res?.user) {
-        this.authStateChangeSubjects.next(res.user ?? null);
-      }
-    });
-    onAuthStateChanged(this.auth, (user) => {
-      this.authStateChangeSubjects.next(user);
-    });
   }
 
   public get getUser$() {
-    return this.authStateChangeSubjects.asObservable();
+    return this.authStateChangeSubjects;
   }
   public get user() {
-    console.log(this.authStateChange())
-    return this.authStateChange
+    return this.authStateChange;
   }
 
-  public async getUser(): Promise<ISignedInUser | null> {
-    const u = await firstValueFrom(
-      this.authStateChangeSubjects.asObservable().pipe(take(1))
-    );
+  public getUser(): ISignedInUser | null {
+    const u = this.user();
     if (!u) {
       return null;
     }
@@ -54,12 +42,10 @@ export class FirebaseAuthProvider {
   public async login() {
     try {
       const redirectResult = await getRedirectResult(this.auth);
+      // eslint-disable-next-line no-empty
       if (redirectResult) {
       } else {
-        const signInResult = await signInWithRedirect(
-          this.auth,
-          this.googleProvider
-        );
+        await signInWithRedirect(this.auth, this.googleProvider);
       }
     } catch (ex) {
       console.log(ex);

@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StoreModule } from '@ngrx/store';
+import { NgModule } from '@angular/core';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromDays from './+state/days.reducer';
+import { StoreModule } from '@ngrx/store';
 import { DaysEffects } from './+state/days.effects';
-import * as fromTasks from './+tasks/tasks.reducer';
-import { TasksEffects } from './+tasks/tasks.effects';
-import { TasksFacade } from './+tasks/tasks.facade';
+import * as fromDays from './+state/days.reducer';
 import { DaysmanagementService } from './+state/services/days-managemenet.service';
 import { TaskApiService } from './+tasks/services/task-api.service';
+import { TasksEffects } from './+tasks/tasks.effects';
+import * as fromTasks from './+tasks/tasks.reducer';
 
 @NgModule({
   imports: [

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, computed } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { select, Store, Action } from '@ngrx/store';
-
+import { Store, select } from '@ngrx/store';
+import isToday from 'date-fns/isToday';
 import * as DaysActions from './days.actions';
-import * as DaysFeature from './days.reducer';
 import * as DaysSelectors from './days.selectors';
+import { tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DaysFacade {
@@ -21,6 +21,9 @@ export class DaysFacade {
   selectedDays$ = this.store.pipe(select(DaysSelectors.getSelected));
 
   public ongoingDays = toSignal(this.ongoingDays$, { initialValue: [] });
+  public futureDays = computed(() =>
+    this.ongoingDays().filter((d) => !isToday(d.date))
+  );
   public today = toSignal(this.today$);
 
   constructor(private readonly store: Store) {}
@@ -32,7 +35,7 @@ export class DaysFacade {
   init() {
     this.store.dispatch(DaysActions.initDays());
   }
-  createDay(date: Date, description: string = '') {
+  createDay(date: Date, description = '') {
     this.store.dispatch(
       DaysActions.createDay({ payload: { date, description } })
     );
