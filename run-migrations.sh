@@ -1,1 +1,1 @@
-npx nx migrate --run-migrations --create-commits
+npx nx migrate --run-migrations
