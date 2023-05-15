@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { filter, take } from 'rxjs';
 import { DaysFacade } from '../../+state/days.facade';
 import { NewDayFormComponent } from '../new-day-form/new-day-form.component';

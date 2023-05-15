@@ -1,4 +1,8 @@
 :host {
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
+  padding: 1rem;
+  hgm-add-new-button  {
+    margin: 0 1rem;
+  }
 }

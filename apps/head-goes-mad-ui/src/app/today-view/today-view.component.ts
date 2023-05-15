@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
-import { DaysEntity, DaysFacade, TaskEditorComponent, TasksEntity, TasksFacade } from '@hgm/days-management';
+import { MatDialog } from '@angular/material/dialog';
+import { DaysFacade, TasksFacade } from '@hgm/days-management';
 
 @Component({
   selector: 'hgm-today-view',
@@ -8,10 +8,12 @@ import { DaysEntity, DaysFacade, TaskEditorComponent, TasksEntity, TasksFacade }
   styleUrls: ['./today-view.component.scss'],
 })
 export class TodayViewComponent implements OnInit {
-  public today$ = this.daysFacade.today$;
+  public today = this.daysFacade.today;
 
-  constructor(private daysFacade: DaysFacade,private tasksFacade: TasksFacade,
-    private matDialog: MatDialog) {}
+  constructor(
+    private daysFacade: DaysFacade,
+    private tasksFacade: TasksFacade
+  ) {}
 
   ngOnInit() {
     this.daysFacade.init();

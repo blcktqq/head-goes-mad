@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { UserFacade } from '@hgm/user';
 import { Observable, take, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuardGuard  {
+export class AuthGuardGuard {
   constructor(private userFacade: UserFacade, private router: Router) {}
+
+  private isUserLoaded = this.userFacade.isUserLoaded;
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -26,16 +33,10 @@ export class AuthGuardGuard  {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.isUserLoaded().pipe(
-      tap((result) => {
-        if (!result) {
-          this.router.navigate(['/auth']);
-        }
-      })
-    );
-  }
-
-  private isUserLoaded() {
-    return this.userFacade.isUserLoaded$.pipe(take(1));
+    console.log(this.isUserLoaded())
+    if (!this.isUserLoaded()) {
+      return this.router.navigate(['/auth']);
+    }
+    return this.isUserLoaded();
   }
 }

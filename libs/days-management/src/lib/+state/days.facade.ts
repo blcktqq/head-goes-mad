@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { select, Store, Action } from '@ngrx/store';
 
 import * as DaysActions from './days.actions';
@@ -16,8 +17,11 @@ export class DaysFacade {
   heap$ = this.store.pipe(select(DaysSelectors.getHeap));
   ongoingDays$ = this.store.pipe(select(DaysSelectors.getOngoingDays));
   today$ = this.store.pipe(select(DaysSelectors.getToday));
-  outdatedDays$ = this.store.pipe(select(DaysSelectors.getOutdatedDays));;
+  outdatedDays$ = this.store.pipe(select(DaysSelectors.getOutdatedDays));
   selectedDays$ = this.store.pipe(select(DaysSelectors.getSelected));
+
+  public ongoingDays = toSignal(this.ongoingDays$, { initialValue: [] });
+  public today = toSignal(this.today$);
 
   constructor(private readonly store: Store) {}
 

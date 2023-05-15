@@ -1,24 +1,13 @@
 <hgm-day-container
-[shouldCreateTasks]="false"
-      [day]="day"
-      [tasks]="getTasksPerDay$(day.id) | async"
-      *ngFor="let day of days$ | async"
-    >
-      <hgm-task-viewer
-        class="m-4"
-        hgmDayContainerItem
-        *ngFor="let item of getTasksPerDay$(day.id) | async"
-        [task]="item"
-      ></hgm-task-viewer>
-    </hgm-day-container>
-    <!-- <hgm-day-container
-    [shouldCreateTasks]="false"
-    [day]="heap$ | async"
-  >
-    <hgm-task-viewer
-      class="border-solid border-spacing-0"
-      hgmDayContainerItem
-      *ngFor="let item of getTasksPerDay$(null) | async"
-      [task]="item"
-    ></hgm-task-viewer>
-  </hgm-day-container> -->
+  [shouldCreateTasks]="false"
+  [day]="day"
+  [tasks]="getTasksPerDay$(day.id) | async"
+  *ngFor="let day of days()"
+>
+  <hgm-task-viewer
+    class="m-4"
+    hgmDayContainerItem
+    *ngFor="let item of getTasksPerDay$(day.id) | async"
+    [task]="item"
+  ></hgm-task-viewer>
+</hgm-day-container>

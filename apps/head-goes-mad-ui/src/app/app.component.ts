@@ -15,9 +15,5 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.translateService.setDefaultLang(
-    //   this.translateService.getBrowserLang() ?? 'en'
-    // );
-    // this.translateService.use(this.translateService.getBrowserLang() ?? 'en');
   }
 }

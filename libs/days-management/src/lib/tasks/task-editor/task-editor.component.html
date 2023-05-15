@@ -33,7 +33,7 @@
       <mat-label>Select</mat-label>
       <mat-select matNativeControl formControlName="dateId">
         <mat-option [value]="'heap'">{{ 'heap' | translate }}</mat-option>
-        <mat-option [value]="day.id" *ngFor="let day of futureDates$ | async">
+        <mat-option [value]="day.id" *ngFor="let day of futureDates()">
           {{ day.value | date }}</mat-option
         >
       </mat-select>

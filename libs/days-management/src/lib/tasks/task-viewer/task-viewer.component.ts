@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TaskStatusEnum } from '../../+tasks/services/task-api.service';
 import { TasksFacade } from '../../+tasks/tasks.facade';
 import { TasksEntity } from '../../+tasks/tasks.models';

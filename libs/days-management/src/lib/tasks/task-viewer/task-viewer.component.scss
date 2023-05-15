@@ -5,24 +5,24 @@
     float: right;
   }
 
-  .mat-card-title{
+  .mat-mdc-card-title {
     font-size: 1rem;
 
-    .mat-button-base {
-      min-width: 36px;
+    .mat-mdc-button-base {
+      min-width: 2.25rem;
     }
 
     .mat-icon.completed {
-      line-height: 36px;
+      line-height: 2.25rem;
       color: green;
     }
   }
 
-  .mat-card-subtitle{
-    font-size: .75px;
+  .mat-card-subtitle {
+    font-size: 0.75px;
   }
 
-  .mat-card-content {
+  .mat-mdc-card-content {
     margin-top: 1rem;
   }
 }

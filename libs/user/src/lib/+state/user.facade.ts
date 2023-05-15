@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable } from '@angular/core';
 import { FirebaseAuthProvider } from '@hgm/firebase-providers';
-import { select, Store, Action } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { map } from 'rxjs';
 
 import * as UserActions from './user.actions';
@@ -25,6 +25,7 @@ export class UserFacade {
   ) {}
 
   isUserLoaded$ = this.authProvider.getUser$.pipe(map((v) => !!v));
+  isUserLoaded = computed(() => !!this.authProvider.user());
   /**
    * Use the initialization action to perform one
    * or more tasks in your Effects.

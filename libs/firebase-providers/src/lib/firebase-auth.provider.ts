@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth';
 import { firstValueFrom, ReplaySubject, take } from 'rxjs';
 import { ISignedInUser } from '@hgm/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,7 @@ export class FirebaseAuthProvider {
   private auth = getAuth(this.app.getAppProvider());
   private googleProvider = new GoogleAuthProvider();
   private authStateChangeSubjects = new ReplaySubject<User | null>(1);
+  private authStateChange = toSignal(this.authStateChangeSubjects.asObservable())
   constructor(private app: FirebaseAppProvider) {
     this.auth.languageCode = 'ua';
     getRedirectResult(this.auth).then((res) => {
@@ -33,6 +35,10 @@ export class FirebaseAuthProvider {
 
   public get getUser$() {
     return this.authStateChangeSubjects.asObservable();
+  }
+  public get user() {
+    console.log(this.authStateChange())
+    return this.authStateChange
   }
 
   public async getUser(): Promise<ISignedInUser | null> {

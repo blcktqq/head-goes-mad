@@ -1,11 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, computed, Inject, OnInit } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map } from 'rxjs';
 import { DaysFacade } from '../../+state/days.facade';
 import { TasksEntity } from '../../+tasks/tasks.models';
@@ -28,13 +29,9 @@ export class TaskEditorComponent implements OnInit {
     description: FormControl<string | null>;
     dateId: FormControl<string | null>;
   }>;
-  public futureDates$ = this.daysFacade.ongoingDays$.pipe(
-    map((dates) =>
-      dates.map((d) => ({
-        id: d.id,
-        value: d.date,
-      }))
-    )
+
+  public futureDates = computed(() =>
+    this.daysFacade.ongoingDays().map((d) => ({ id: d.id, value: d.date }))
   );
   public getControl(name: string) {
     return this.fg?.get(name);

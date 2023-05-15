@@ -2,12 +2,15 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  computed,
+  effect,
   OnInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DaysFacade } from '../../+state/days.facade';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { isBefore, isToday } from 'date-fns';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'hgm-new-day-form',
@@ -15,19 +18,14 @@ import { isBefore, isToday } from 'date-fns';
   styleUrls: ['./new-day-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-@UntilDestroy()
-export class NewDayFormComponent implements OnInit {
+export class NewDayFormComponent {
   public fg!: FormGroup;
   constructor(
     private fb: FormBuilder,
     private daysFacade: DaysFacade,
     private cdr: ChangeDetectorRef
-  ) {}
-
-  private blackListedDays: Date[] = [];
-  ngOnInit(): void {
-    this.daysFacade.allDays$.pipe(untilDestroyed(this)).subscribe((dates) => {
-      this.blackListedDays = dates.map((d) => d.date);
+  ) {
+    effect(() => {
       const initialDate = this.isDateBlackisted(new Date()) ? new Date() : null;
       this.fg = this.fb.group({
         date: this.fb.control(initialDate, [Validators.required]),
@@ -36,6 +34,11 @@ export class NewDayFormComponent implements OnInit {
       this.cdr.markForCheck();
     });
   }
+
+  private allDays = toSignal(this.daysFacade.allDays$, { initialValue: [] });
+  private blackListedDays = computed(
+    () => this.allDays().map((d) => d.date) ?? []
+  );
 
   public dateFilterFn = (date: Date | null) => this.isDateBlackisted(date);
 
@@ -46,7 +49,7 @@ export class NewDayFormComponent implements OnInit {
     const isOldDate = isBefore(date, new Date()) && !isToday(date);
     return (
       !isOldDate &&
-      !this.blackListedDays.some(
+      !this.blackListedDays().some(
         (d) =>
           d.getFullYear() === date.getFullYear() &&
           d.getMonth() === date.getMonth() &&

@@ -1,4 +1,8 @@
-.mat-dialog-content {
-  display: flex;
-    flex-direction: column;
+
+:host {
+  padding: 1rem;
+  display: block;
+  mat-form-field {
+    width: 100%;
+  }
 }

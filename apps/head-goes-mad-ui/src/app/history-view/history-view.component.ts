@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogConfig as MatDialogConfig } from '@angular/material/legacy-dialog';
-import { DaysEntity, DaysFacade, TaskEditorComponent, TasksEntity, TasksFacade } from '@hgm/days-management';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { MatDialog } from '@angular/material/dialog';
+import { DaysFacade, TasksFacade } from '@hgm/days-management';
 
 @Component({
   selector: 'hgm-history-view',
@@ -8,11 +9,12 @@ import { DaysEntity, DaysFacade, TaskEditorComponent, TasksEntity, TasksFacade }
   styleUrls: ['./history-view.component.scss'],
 })
 export class HistoryViewComponent implements OnInit {
-  public days$ = this.daysFacade.outdatedDays$;
-  // public heap$ = this.daysFacade.heap$;
+  public days = toSignal(this.daysFacade.outdatedDays$);
 
-  constructor(private daysFacade: DaysFacade,private tasksFacade: TasksFacade,
-    private matDialog: MatDialog) {}
+  constructor(
+    private daysFacade: DaysFacade,
+    private tasksFacade: TasksFacade
+  ) {}
 
   ngOnInit() {
     this.daysFacade.init();
