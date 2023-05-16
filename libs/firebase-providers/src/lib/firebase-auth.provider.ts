@@ -16,9 +16,7 @@ import { filter } from 'rxjs';
 export class FirebaseAuthProvider {
   private auth = inject(Auth);
   private googleProvider = new GoogleAuthProvider();
-  private authStateChangeSubjects = user(this.auth).pipe(
-    filter((u) => !!u || u !== null)
-  );
+  private authStateChangeSubjects = user(this.auth)
   private authStateChange = toSignal(this.authStateChangeSubjects);
   constructor() {
     this.auth.languageCode = 'ua';

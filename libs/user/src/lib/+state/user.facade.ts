@@ -24,7 +24,7 @@ export class UserFacade {
     private authProvider: FirebaseAuthProvider
   ) {}
 
-  isUserLoaded$ = this.authProvider.getUser$.pipe(map((v) => !!v));
+  isUserLoaded$ = this.authProvider.getUser$
   isUserLoaded = computed(() => !!this.authProvider.user());
   /**
    * Use the initialization action to perform one

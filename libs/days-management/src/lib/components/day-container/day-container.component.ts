@@ -1,16 +1,12 @@
 import {
   AfterContentInit,
-  AfterViewInit,
   Component,
   ContentChildren,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   QueryList,
-  ViewChildren,
 } from '@angular/core';
-import { concat, min, of } from 'rxjs';
 import { DaysEntity } from '../../+state/days.models';
 import { TaskStatusEnum } from '../../+tasks/services/task-api.service';
 import { TasksEntity } from '../../+tasks/tasks.models';
@@ -40,7 +36,7 @@ export class DayContainerComponent implements AfterContentInit {
     // );
   }
   public get completedTasks() {
-    return this.tasks?.filter(t => t.status === TaskStatusEnum.Completed);
+    return this.tasks?.filter((t) => t.status === TaskStatusEnum.Completed);
   }
   onClick() {
     if (this.day) {
